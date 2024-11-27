@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Data Collection</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="date"],
+        input[type="number"],
+        select {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            transition: border 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #74ebd5;
+            outline: none;
+            background-color: #eef9f9;
+        }
+
+        .form-section {
+            padding: 15px;
+            background-color: #f7faff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-section h2 {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #74ebd5;
+            padding-bottom: 5px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            align-self: center;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Waste Data Collection (கழிவு தரவு சேகரிப்பு)</h1>
+        <form id="wasteForm">
+            <label for="date">Date (தேதி):</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="building">Building Name (கட்டிடம் பெயர்):</label>
+            <select id="building" name="building" required>
+                <option value="">Select Building (கட்டிடத்தை தேர்ந்தெடுக்கவும்)</option>
+                <option value="Technology Block I">Technology Block I (தொழில்நுட்பக் கட்டிடம் I)</option>
+                <option value="Technology Block II">Technology Block II (தொழில்நுட்பக் கட்டிடம் II)</option>
+                <option value="PKC">PKC</option>
+                <option value="PKC Extension">PKC Extension(விரிவாக்கம்)</option>
+                <option value="PKC">TBI</option>
+                <option value="Indoor Stadium">Indoor Stadium(இன்டோர் ஸ்டேடியம்)</option>
+                <option value="Vittobai Hostel">Vittobai Hostel(வித்தோபை விடுதி)</option>
+                <option value="Architecture Block">Architecture Block(வடிவமைப்பு கட்டிடம்)</option>
+                <option value="B.Ed Block">B.Ed Block(பி.ஈ.டி. கட்டிடம்)</option>
+                <option value="Nagammair Hostel">Nagammaiar Hostel(நாகம்மையார் விடுதி)</option>
+                <option value="Chakkaravarthi Hostel">Chakkaravarthi Hostel(சக்ரவர்த்தி விடுதி)</option>
+                <option value="Staff Quarters">Staff Quarters( பேராசிரியர் குடியிருப்பு)</option>
+            </select>
+
+            <!-- Biodegradable Section -->
+            <div class="form-section">
+                <h2>Biodegradable Waste (பாரம்பரிய கழிவு)</h2>
+                <label for="foodWaste">Food Waste (உணவு கழிவு) (kg):</label>
+                <input type="number" id="foodWaste" name="biodegradable_food" step="0.01">
+            </div>
+
+            <!-- Non-Biodegradable Section -->
+            <div class="form-section">
+                <h2>Non-Biodegradable Waste (பாரம்பரிய அல்லாத கழிவு)</h2>
+                <label for="metal">Metal (உலோகம்) (kg):</label>
+                <input type="number" id="metal" name="non_biodegradable_metal" step="0.01">
+                <label for="ceramics">Ceramics (தட்டுகள்) (kg):</label>
+                <input type="number" id="ceramics" name="non_biodegradable_ceramics" step="0.01">
+                <label for="certainPlastics">Certain Plastics (பயன்படுத்த முடியாத பிளாஸ்டிக்குகள்) (kg):</label>
+                <input type="number" id="certainPlastics" name="non_biodegradable_plastics" step="0.01">
+            </div>
+
+            <!-- Recyclable Section -->
+            <div class="form-section">
+                <h2>Recyclable Waste (மறுசுழற்சி கழிவு)</h2>
+                <label for="paper">Paper (காகிதம்) (kg):</label>
+                <input type="number" id="paper" name="recyclable_paper" step="0.01">
+                <label for="tinCans">Tin Cans (டின் கேன்கள்) (kg):</label>
+                <input type="number" id="tinCans" name="recyclable_tin" step="0.01">
+                <label for="glassBottles">Glass Bottles (கண்ணாடி பாட்டில்கள்) (kg):</label>
+                <input type="number" id="glassBottles" name="recyclable_glass" step="0.01">
+                <label for="recyclablePlastics">Plastics (மறுசுழற்சி செய்யும் பிளாஸ்டிக்குகள்) (kg):</label>
+                <input type="number" id="recyclablePlastics" name="recyclable_plastics" step="0.01">
+            </div>
+
+            <!-- Reusable Section -->
+            <div class="form-section">
+                <h2>Reusable Waste (மறுபயன்பாடு கழிவு)</h2>
+                <label for="clothes">Clothes (துணிகள்) (kg):</label>
+                <input type="number" id="clothes" name="reusable_clothes" step="0.01">
+                <label for="tables">Tables (மேசைகள்) (kg):</label>
+                <input type="number" id="tables" name="reusable_tables" step="0.01">
+                <label for="containers">Containers (ககண்ணாடி ஜாடிகள்) (kg):</label>
+                <input type="number" id="containers" name="reusable_containers" step="0.01">
+                <label for="books">Books (புத்தகங்கள்) (kg):</label>
+                <input type="number" id="books" name="reusable_books" step="0.01">
+            </div>
+
+            <!-- Biomedical Section -->
+            <div class="form-section">
+                <h2>Bio-Medical Waste (மருத்துவ கழிவு)</h2>
+                <label for="biomedicalWaste">Bio-Medical Waste (மருத்துவ கழிவு) (kg):</label>
+                <input type="number" id="biomedicalWaste" name="biomedical" step="0.01">
+            </div>
+
+            <!-- Plastic Section -->
+            <div class="form-section">
+                <h2>Plastic Waste (பிளாஸ்டிக் கழிவு)</h2>
+                <label for="plasticWaste">Plastic Waste (பிளாஸ்டிக் கழிவு) (kg):</label>
+                <input type="number" id="plasticWaste" name="plastic" step="0.01">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" id="submitBtn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', async function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(document.getElementById('wasteForm'));
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('http://localhost:3000/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.message || "Data successfully submitted!");
+                } else {
+                    alert("Error submitting data.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred while submitting the form.");
+            }
+        });
+    </script>
+</body>
+</html>
